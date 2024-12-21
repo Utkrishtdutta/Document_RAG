@@ -33,7 +33,6 @@ if uploaded_files:
     input = st.chat_input("Enter the question")
     if input:
         docs_page = faiss_index.similarity_search(input, k = 2)
-        st.write(docs_page)
         chain = prompt | model | StrOutputParser()
         output = chain.invoke({"context1" : docs_page[0].page_content,
                                "context2" : docs_page[1].page_content,
